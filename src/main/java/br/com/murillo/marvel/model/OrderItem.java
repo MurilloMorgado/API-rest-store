@@ -2,6 +2,8 @@ package br.com.murillo.marvel.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.murillo.marvel.model.modelPK.OrderItemPK;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -13,7 +15,7 @@ public class OrderItem implements Serializable {
   public static final long serialVersionUID = 1L;
 
   @EmbeddedId
-  private OrderItemPK id;
+  private OrderItemPK id = new OrderItemPK();
 
   private Integer quantity;
   private Double price;
@@ -46,6 +48,7 @@ public class OrderItem implements Serializable {
     this.price = price;
   }
 
+  @JsonIgnore
   public Order getOrder() {
     return id.getOrder();
   }
@@ -54,6 +57,7 @@ public class OrderItem implements Serializable {
     id.setOrder(order);
   }
 
+  
   public Product getProduct(){
     return id.getProduct();
   }
