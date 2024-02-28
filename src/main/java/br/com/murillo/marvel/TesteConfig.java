@@ -17,6 +17,7 @@ import br.com.murillo.marvel.model.Category;
 import br.com.murillo.marvel.model.Order;
 import br.com.murillo.marvel.model.OrderItem;
 import br.com.murillo.marvel.model.OrderStatus;
+import br.com.murillo.marvel.model.Payment;
 import br.com.murillo.marvel.model.Product;
 import br.com.murillo.marvel.model.User;
 
@@ -77,6 +78,11 @@ public class TesteConfig implements CommandLineRunner {
     categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+    Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1 );
+    o1.setPaymant(pay1);
+
+    orderRepository.save(o1);
   }
 
 }
